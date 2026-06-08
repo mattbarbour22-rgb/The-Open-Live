@@ -8,9 +8,9 @@ export const tournamentConfig = {
   venue: 'Royal Birkdale Golf Club',
   location: 'Southport, Merseyside, England',
   dates: 'July 16–19, 2026',
-  prizePool: '$3,500',
+  prizePool: '$1,750',
   tournamentTimezone: 'Europe/London',
-  jackpotRule: 'To win, your picks must include the outright Champion Golfer of the Year. If no entry has the winner, the prize jackpots again.',
+  jackpotRule: 'To win, your picks must include the outright Champion Golfer of the Year. If no entry has the winner, the prize jackpots.',
   heroImage: 'https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&w=2400&q=80'
 };
 
