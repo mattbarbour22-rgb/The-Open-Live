@@ -296,8 +296,8 @@ function buildMap(players) {
 }
 
 function isLivePick(p) {
-  if (!p) return false;
-
+  if (!p || p.pendingPick) return false;
+  
   const label = String(p.positionLabel || '').trim().toUpperCase();
   const hasTeeTime = p.teeTime && String(p.teeTime).trim();
 
@@ -368,14 +368,30 @@ function evaluatePool(entries, players, previousRanks) {
   const hasRealScores = players.some(p => p.thru && !String(p.thru).toLowerCase().includes('tee'));
 
   const evaluated = entries.map((entry, originalIndex) => {
-    const picks = entry.picks.map(pick => map.get(keyName(pick)) || {
-      name: pick,
-      position: 999,
-      positionLabel: 'NS',
-      score: 999,
+    const picks = entry.picks.map(pick => {
+  const cleanPick = String(pick || '').trim();
+
+  if (!cleanPick) {
+    return {
+      name: 'Awaiting Pick',
+      position: 998,
+      positionLabel: '—',
+      score: 998,
       today: '',
-      thru: 'Not Started'
-    });
+      thru: 'Awaiting Pick',
+      pendingPick: true
+    };
+  }
+
+  return map.get(keyName(cleanPick)) || {
+    name: cleanPick,
+    position: 999,
+    positionLabel: 'NS',
+    score: 999,
+    today: '',
+    thru: 'Not Started'
+  };
+});
 
     const sortedPicks = [...picks].sort((a,b) => {
       if ((a.position ?? 999) !== (b.position ?? 999)) return (a.position ?? 999) - (b.position ?? 999);
