@@ -92,6 +92,7 @@ function keyName(name) {
 }
 
 function scoreLabel(score) {
+  if (score === 998) return '—';
   if (score === 999) return 'MC';
   const n = Number(score);
   if (!Number.isFinite(n) || n === 0) return 'E';
@@ -99,7 +100,7 @@ function scoreLabel(score) {
 }
 
 function posLabel(player) {
-  if (!player) return '—';
+  if (!player || player.pendingPick) return '—';
 
   const label = String(player.positionLabel || '').trim().toUpperCase();
   const hasTeeTime = player.teeTime && String(player.teeTime).trim();
@@ -318,20 +319,25 @@ function comparePickSets(a, b) {
 }
 
 function isDominated(entry, allEntries) {
+  if (entry.sortedPicks.every(p => p.pendingPick)) return false;
+
   const livePicks = entry.sortedPicks.filter(isLivePick);
 
-  // Current rule from PGA Championship: anyone with 3 live picks stays alive.
-  if (livePicks.length === 3) return false;
   if (livePicks.length === 0) return true;
+  if (livePicks.length === 3) return false;
 
-  return livePicks.every(winner => {
-    return allEntries.some(other => {
-      if (other.player === entry.player) return false;
-      const otherLive = other.sortedPicks.filter(isLivePick);
-      const otherHasWinner = otherLive.some(p => keyName(p.name) === keyName(winner.name));
-      if (!otherHasWinner) return false;
-      return comparePickSets(otherLive, livePicks) < 0;
-    });
+  return allEntries.some(other => {
+    if (other.player === entry.player) return false;
+
+    const otherLive = other.sortedPicks.filter(isLivePick);
+
+    const coversAllLivePicks = livePicks.every(lp =>
+      otherLive.some(op => keyName(op.name) === keyName(lp.name))
+    );
+
+    if (!coversAllLivePicks) return false;
+
+    return comparePickSets(other.sortedPicks, entry.sortedPicks) < 0;
   });
 }
 
@@ -351,7 +357,7 @@ function rankEntries(entries, hasRealScores, previousRanks = {}) {
       : 1;
 
     const rankLabel = tieCount > 1 ? `T${currentRank}` : String(currentRank);
-    const prev = previousRanks?.[entry.player];
+    const prev = previousRanks?.[String(entry.player).trim()];
     let move = '—', moveClass = 'move-same';
 
     if (prev && hasRealScores) {
@@ -371,14 +377,14 @@ function evaluatePool(entries, players, previousRanks) {
     const picks = entry.picks.map(pick => {
   const cleanPick = String(pick || '').trim();
 
-  if (!cleanPick) {
+  if (!cleanPick || cleanPick === '-') {
     return {
-      name: 'Awaiting Pick',
+      name: '-',
       position: 998,
       positionLabel: '—',
       score: 998,
       today: '',
-      thru: 'Awaiting Pick',
+      thru: '-',
       pendingPick: true
     };
   }
@@ -416,16 +422,22 @@ function evaluatePool(entries, players, previousRanks) {
 
   if (!cutHasHappened) return rankedWithStatus;
 
-  const aliveRaw = rankedWithStatus.filter(entry => !isDominated(entry, rankedWithStatus));
+  const hasSubmittedPicks = entry =>
+    entry.sortedPicks.some(p => !p.pendingPick);
+
+  const aliveRaw = rankedWithStatus.filter(entry =>
+    !hasSubmittedPicks(entry) || !isDominated(entry, rankedWithStatus)
+  );
+
   const alive = rankEntries(aliveRaw, hasRealScores, previousRanks);
 
   const eliminated = rankedWithStatus
-  .filter(entry => isDominated(entry, rankedWithStatus))
+  .filter(entry => hasSubmittedPicks(entry) && isDominated(entry, rankedWithStatus))
   .map(entry => {
 
     const livePicks = entry.sortedPicks.filter(isLivePick);
 
-    let eliminationReason = 'ALL MC';
+    let eliminationReason = livePicks.length === 0 ? 'ALL MC' : 'COVERED';
 
     if (livePicks.length > 0) {
 
@@ -434,9 +446,13 @@ function evaluatePool(entries, players, previousRanks) {
 
         const otherLive = other.sortedPicks.filter(isLivePick);
 
-        return livePicks.every(lp =>
+        const coversAllLivePicks = livePicks.every(lp =>
           otherLive.some(op => keyName(op.name) === keyName(lp.name))
-        ) && comparePickSets(otherLive, livePicks) < 0;
+        );
+
+        if (!coversAllLivePicks) return false;
+
+        return comparePickSets(other.sortedPicks, entry.sortedPicks) < 0;
       });
 
       if (coveringEntry) {
@@ -472,7 +488,7 @@ const [poolStateLoaded, setPoolStateLoaded] = useState(false);
 
 async function loadLeaderboard() {
   try {
-    const res = await fetch('/api/leaderboard');
+    const res = await fetch('/api/leaderboard', { cache: 'no-store' });
     const data = await res.json();
     setApiState(data);
   } catch (err) {
@@ -496,9 +512,9 @@ useEffect(() => {
 useEffect(() => {
   async function loadPoolState() {
     try {
-      const data = await fetch('/api/pool-state').then(r => r.json());
+      const data = await fetch('/api/pool-state', { cache: 'no-store' }).then(r => r.json());
 
-      setMovementRanks(data.previous_ranks || {});
+      setMovementRanks(data.current_ranks || data.previous_ranks || {});
       setPoolStateLoaded(true);
     } catch {
       setMovementRanks({});
