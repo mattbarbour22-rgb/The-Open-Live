@@ -231,17 +231,22 @@ export async function GET() {
     }
 
     return Response.json({
-      mode,
-      status: payload?.status || '',
-      roundStatus: payload?.roundStatus || '',
-      roundId: payload?.roundId || '',
-      playoff,
-      requestUrl: url,
-      updatedAt: new Date().toISOString(),
-      players,
-      rawKeys: Object.keys(payload || {}),
-      rawPreview: players.length ? undefined : payload
-    });
+  mode,
+  status: payload?.status || '',
+  roundStatus: payload?.roundStatus || '',
+  roundId: payload?.roundId || '',
+  playoff,
+  requestUrl: url,
+  updatedAt:
+    payload?.lastUpdated ||
+    payload?.timestamp ||
+    payload?.data?.lastUpdated ||
+    payload?.data?.timestamp ||
+    new Date().toISOString(),
+  players,
+  rawKeys: Object.keys(payload || {}),
+  rawPreview: players.length ? undefined : payload
+});
   } catch (err) {
     return Response.json({
       mode: 'api-error',
