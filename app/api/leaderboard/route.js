@@ -237,12 +237,7 @@ export async function GET() {
   roundId: payload?.roundId || '',
   playoff,
   requestUrl: url,
-  updatedAt:
-    payload?.lastUpdated ||
-    payload?.timestamp ||
-    payload?.data?.lastUpdated ||
-    payload?.data?.timestamp ||
-    new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
   players,
   rawKeys: Object.keys(payload || {}),
   rawPreview: players.length ? undefined : payload
