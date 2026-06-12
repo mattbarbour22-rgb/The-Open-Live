@@ -1,9 +1,8 @@
-// Manual API cache control.
-// For live testing, keep this dynamic so the status button updates properly.
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+// Manual API cache control. Change this one number when you want faster/slower updates.
+// Next.js uses SECONDS here: 300 = 5 min, 900 = 15 min, 1800 = 30 min, 3600 = 1 hour.
+export const revalidate = 300;
 
-const TOURN_ID = process.env.SLASH_GOLF_TOURN_ID || '032';
+const TOURN_ID = process.env.SLASH_GOLF_TOURN_ID || '100';
 const YEAR = process.env.SLASH_GOLF_YEAR || '2026';
 const ORG_ID = process.env.SLASH_GOLF_ORG_ID || '1';
 
@@ -115,7 +114,6 @@ export async function GET() {
         'x-rapidapi-key': key,
         'x-rapidapi-host': host,
       },
-      cache: 'no-store',
     });
 
     const text = await res.text();
@@ -231,17 +229,17 @@ export async function GET() {
     }
 
     return Response.json({
-  mode,
-  status: payload?.status || '',
-  roundStatus: payload?.roundStatus || '',
-  roundId: payload?.roundId || '',
-  playoff,
-  requestUrl: url,
-  updatedAt: new Date().toISOString(),
-  players,
-  rawKeys: Object.keys(payload || {}),
-  rawPreview: players.length ? undefined : payload
-});
+      mode,
+      status: payload?.status || '',
+      roundStatus: payload?.roundStatus || '',
+      roundId: payload?.roundId || '',
+      playoff,
+      requestUrl: url,
+      updatedAt: new Date().toISOString(),
+      players,
+      rawKeys: Object.keys(payload || {}),
+      rawPreview: players.length ? undefined : payload
+    });
   } catch (err) {
     return Response.json({
       mode: 'api-error',
