@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 const TOURNAMENT_STATE_ID =
-  process.env.TOURNAMENT_STATE_ID || '2026-us-open';
+  process.env.TOURNAMENT_STATE_ID || '2026-the-open';
 
 function getSupabase() {
   return createClient(
