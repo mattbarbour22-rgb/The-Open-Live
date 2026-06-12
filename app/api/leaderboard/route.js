@@ -180,29 +180,33 @@ const isPlayoff =
     roundStatus.includes('playoff')
   );
 
-const isFinishedForRound = p => {
+const isPlayingNow = p => {
   const thru = String(p.thru || '').trim().toUpperCase();
-  const pos = String(p.positionLabel || '').trim().toUpperCase();
 
   return (
-    thru === 'F' ||
-    thru === 'F*' ||
-    thru === '18' ||
-    thru === 'MC' ||
-    pos === 'MC' ||
-    pos === 'CUT'
+    thru &&
+    thru !== '-' &&
+    thru !== '—' &&
+    thru !== 'F' &&
+    thru !== 'F*' &&
+    thru !== '18' &&
+    thru !== 'MC' &&
+    thru !== 'CUT' &&
+    thru !== 'WD' &&
+    thru !== 'DQ' &&
+    !thru.includes('TEE')
   );
 };
 
-const allPlayersFinishedRound =
-  players.length > 0 &&
-  players.every(isFinishedForRound);
+const anyPlayerPlayingNow = players.some(isPlayingNow);
 
 const isBreak =
   currentRoundId >= 1 &&
   currentRoundId <= 3 &&
+  players.length > 0 &&
   !isOfficial &&
-  allPlayersFinishedRound;
+  !isSuspended &&
+  !anyPlayerPlayingNow;
 
 let mode = 'ready';
 
