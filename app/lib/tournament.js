@@ -90,7 +90,7 @@ export const poolEntries = [
   { player: 'Trump H', picks: ['Viktor Hovland', 'Tony Finau', 'Justin Rose'] },
   { player: 'John Edge', picks: ['Collin Morikawa', 'Sam Burns', 'Matt Fitzpatrick'] },
   { player: 'Trent W', picks: ['Shane Lowry', 'Nick Taylor', 'Taylor Pendrith'] },
-  { player: 'Sir Steve', picks: ['Tommy Fleetwood', 'Corey Conners', 'Aaron Rai'] }
+  { player: 'Sir Steve', picks: ['Tommy Fleetwood', 'Corey Conners', 'Aaron Rai'] },
   { player: 'Nat', picks: ['Tommy Fleetwood', 'Ryan Fox', 'Matt Fitzpatrick'] },
   { player: 'Up the Wahs', picks: ['Tommy Fleetwood', 'Corey Conners', 'Justin Rose'] }
 ];
