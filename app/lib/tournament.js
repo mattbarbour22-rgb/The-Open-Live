@@ -28,7 +28,7 @@ export const poolEntries = [
 
   { player: 'Doc Campbell', picks: ['Scottie Scheffler', 'Jon Rahm', 'Matt Fitzpatrick'] },
   { player: 'T Coleman', picks: ['Viktor Hovland', 'Tom Kim', 'Patrick Cantlay'] },
-  { player: 'A Rose', picks: ['Xander Schauffele', 'Aaron Rai', 'Justin Rose'] },
+  { player: 'A Rose', picks: ['Xander Schauffele', 'Aaron Rai', 'Bud Cauley'] },
   { player: 'D Haycock', picks: ['Rory McIlroy', 'Shane Lowry', 'Robert MacIntyre'] },
   { player: 'P Langley', picks: ['Scottie Scheffler', 'Tyrrell Hatton', 'Min Woo Lee'] },
   { player: 'T Wallace', picks: ['Matt Fitzpatrick', 'Ludvig Åberg', 'Tommy Fleetwood'] },
@@ -73,7 +73,7 @@ export const poolEntries = [
   { player: 'The Wrangler', picks: ['Scottie Scheffler', 'Xander Schauffele', 'Tommy Fleetwood'] },
   { player: 'AD', picks: ['Tommy Fleetwood', 'Matt Fitzpatrick', 'Xander Schauffele'] },
   { player: 'J Turner', picks: ['Scottie Scheffler', 'Xander Schauffele', 'Tyrrell Hatton'] },
-  { player: 'M Sanders', picks: ['Rory McIlroy', 'Matt Fitzpatrick', 'Justin Rose'] },
+  { player: 'M Sanders', picks: ['Rory McIlroy', 'Matt Fitzpatrick', 'Bud Cauley'] },
   { player: 'Nick Fitz', picks: ['Rory McIlroy', 'Matt Fitzpatrick', 'Min Woo Lee'] },
   { player: 'T Rowe', picks: ['Ludvig Åberg', 'Tom Kim', 'Scottie Scheffler'] },
   { player: 'J Tilley', picks: ['Matt Fitzpatrick', 'Jon Rahm', 'Aaron Rai'] },
@@ -82,7 +82,7 @@ export const poolEntries = [
 
   { player: 'L Adams', picks: ['Wyndham Clark', 'Jon Rahm', 'Rory McIlroy'] },
   { player: 'K McGinness', picks: ['Shane Lowry', 'Matt Fitzpatrick', 'Tommy Fleetwood'] },
-  { player: 'Baylis', picks: ['Scottie Scheffler', 'Tommy Fleetwood', 'Justin Rose'] },
+  { player: 'Baylis', picks: ['Scottie Scheffler', 'Tommy Fleetwood', 'Bud Cauley'] },
   { player: 'D Tucker', picks: ['Scottie Scheffler', 'Tyrrell Hatton', 'Jon Rahm'] },
   { player: 'Kev Martin', picks: ['Ludvig Åberg', 'Rory McIlroy', 'Corey Conners'] },
   { player: 'P Mac', picks: ['Scottie Scheffler', 'Tom Kim', 'Tommy Fleetwood'] },
