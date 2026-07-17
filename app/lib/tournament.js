@@ -66,7 +66,7 @@ export const poolEntries = [
   { player: 'Mac The Knife', picks: ['Kristoffer Reitan', 'Cameron Young', 'Keita Nakajima'] },
 
   { player: 'Crusader', picks: ['Scottie Scheffler', 'Matt Fitzpatrick', 'Tommy Fleetwood'] },
-  { player: 'Maccas', picks: ['Collin Morikawa', 'Viktor Hovland', 'Eugenio Lopez-Chacarra'] },
+  { player: 'Maccas', picks: ['Collin Morikawa', 'Viktor Hovland', 'Eugenio Chacarra'] },
   { player: 'Matt B', picks: ['Scottie Scheffler', 'Rory McIlroy', 'Jon Rahm'] },
   { player: 'The Wrangler', picks: ['Scottie Scheffler', 'Xander Schauffele', 'Robert MacIntyre'] },
   { player: 'AD', picks: ['Rory McIlroy', 'Min Woo Lee', 'Matt Fitzpatrick'] },
