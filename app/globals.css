@@ -117,6 +117,28 @@ body {
 
 .pool-panel { margin-top: 24px; }
 
+/* Pool leaderboard transparency */
+.pool-panel {
+  background: rgba(8, 24, 44, 0.36);
+}
+
+.pool-panel table {
+  background: rgba(6, 20, 38, 0.22);
+}
+
+.pool-panel th {
+  background: rgba(9, 32, 56, 0.70);
+}
+
+.pool-panel td {
+  background: rgba(22, 40, 64, 0.48);
+}
+
+.pool-panel tr:nth-child(even) td {
+  background: rgba(48, 71, 97, 0.56);
+}
+
+
 .panel-title {
   background: linear-gradient(90deg, #04101f, var(--navy-2));
   border-bottom: 2px solid var(--gold);
