@@ -115,29 +115,10 @@ body {
   border: 1px solid rgba(201,162,74,.72);
 }
 
-.pool-panel { margin-top: 24px; }
-
-/* Pool leaderboard transparency */
 .pool-panel {
-  background: rgba(8, 24, 44, 0.36);
+  margin-top: 24px;
+  background: rgba(8,24,44,.58);
 }
-
-.pool-panel table {
-  background: rgba(6, 20, 38, 0.22);
-}
-
-.pool-panel th {
-  background: rgba(9, 32, 56, 0.70);
-}
-
-.pool-panel td {
-  background: rgba(22, 40, 64, 0.48);
-}
-
-.pool-panel tr:nth-child(even) td {
-  background: rgba(48, 71, 97, 0.56);
-}
-
 
 .panel-title {
   background: linear-gradient(90deg, #04101f, var(--navy-2));
@@ -150,7 +131,7 @@ body {
   letter-spacing: .03em;
 }
 
-table { width: 100%; border-collapse: collapse; background: rgba(6,20,38,.92); }
+table { width: 100%; border-collapse: collapse; background: rgba(6,20,38,.48); }
 
 th {
   background: rgba(9,32,56,.98);
@@ -169,10 +150,10 @@ td {
   font-size: 14px;
   color: #ffffff;
   border-bottom: 1px solid rgba(255,255,255,.10);
-  background: rgba(22,40,64,.96);
+  background: rgba(22,40,64,.70);
 }
 
-tr:nth-child(even) td { background: rgba(48,71,97,.96); }
+tr:nth-child(even) td { background: rgba(48,71,97,.62); }
 .player { color: #ffffff; font-weight: 800; }
 .red { color: #ff5b6b; font-weight: 800; }
 .green { color: #95f0af; font-weight: 900; }
