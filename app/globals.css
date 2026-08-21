@@ -259,7 +259,7 @@ tr:nth-child(even) td { background: rgba(48,71,97,.96); }
 
 /* Keep ordinary panels unchanged. */
 .panel {
-  background: rgba(255,255,255,.97);
+  background: var(--paper);
 }
 
 /* ONLY the projected pool leader panel is see-through.
