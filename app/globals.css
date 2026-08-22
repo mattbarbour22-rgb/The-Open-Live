@@ -24,7 +24,6 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  background-repeat: no-repeat;
   color: white;
   min-height: 100vh;
 }
@@ -151,10 +150,6 @@ body {
   align-items: start;
 }
 
-/* =========================================================
-   STANDARD PANELS
-   ========================================================= */
-
 .panel {
   background: rgba(8,24,44,.98);
   color: #ffffff;
@@ -166,13 +161,7 @@ body {
 
 .pool-panel {
   margin-top: 24px;
-
-  /* IMPORTANT:
-     Keep the pool panel dark/transparent like the US Open.
-     These explicit rules prevent the pool box becoming white.
-  */
-  background: rgba(8,24,44,.94) !important;
-  color: #ffffff !important;
+  background: rgba(255,253,243,.58);
 }
 
 .panel-title {
@@ -185,10 +174,6 @@ body {
   color: white;
   letter-spacing: .03em;
 }
-
-/* =========================================================
-   NORMAL GOLF LEADERBOARD
-   ========================================================= */
 
 table {
   width: 100%;
@@ -236,12 +221,11 @@ tr:nth-child(even) td {
 }
 
 .highlight {
-  background:
-    linear-gradient(
-      90deg,
-      rgba(16,102,58,.86),
-      rgba(10,72,43,.72)
-    ) !important;
+  background: linear-gradient(
+    90deg,
+    rgba(16,102,58,.86),
+    rgba(10,72,43,.72)
+  ) !important;
   border-left: 4px solid var(--gold);
 }
 
@@ -249,124 +233,6 @@ tr:nth-child(even) td {
   font-size: 12px;
   color: #edf3fa;
 }
-
-/* =========================================================
-   THE OPEN POOL LEADERBOARD
-   =========================================================
-   THIS IS THE IMPORTANT FIX.
-
-   The projected pool uses .leader-box and was already working.
-   We leave that alone.
-
-   These rules ONLY force the entrant/picks table to remain dark.
-   ========================================================= */
-
-.pool-panel {
-  background: rgba(8,24,44,.94) !important;
-  color: #ffffff !important;
-}
-
-/* Pool leaderboard table itself */
-.pool-panel table {
-  width: 100%;
-  border-collapse: collapse;
-  background: rgba(6,20,38,.94) !important;
-  color: #ffffff !important;
-}
-
-/* Pool leaderboard headings */
-.pool-panel table thead th {
-  background: rgba(9,32,56,.98) !important;
-  color: #ffffff !important;
-  border-bottom: 2px solid rgba(201,162,74,.72) !important;
-}
-
-/* Pool leaderboard rows */
-.pool-panel table tbody tr {
-  background: rgba(22,40,64,.96) !important;
-  color: #ffffff !important;
-}
-
-/* Pool leaderboard cells */
-.pool-panel table tbody td {
-  background: rgba(22,40,64,.96) !important;
-  color: #ffffff !important;
-  border-bottom: 1px solid rgba(255,255,255,.10) !important;
-}
-
-/* Alternating pool rows */
-.pool-panel table tbody tr:nth-child(even) td {
-  background: rgba(48,71,97,.96) !important;
-}
-
-/* Pool entrant names */
-.pool-panel .player {
-  color: #ffffff !important;
-  font-weight: 800;
-}
-
-/* Best-pick highlighted cell */
-.pool-panel td.green,
-.pool-panel td.highlight,
-.pool-panel .green.highlight {
-  color: #95f0af !important;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(16,102,58,.86),
-      rgba(10,72,43,.72)
-    ) !important;
-  border-left: 4px solid var(--gold) !important;
-}
-
-/* Small finishing-position text */
-.pool-panel .small {
-  color: #edf3fa !important;
-}
-
-/* Pool movement */
-.pool-panel .move-up {
-  color: #8ff0a6 !important;
-  font-weight: 900;
-}
-
-.pool-panel .move-down {
-  color: #ff4656 !important;
-  font-weight: 900;
-  white-space: pre-line;
-}
-
-.pool-panel .move-same {
-  color: #cbd5e1 !important;
-  font-weight: 900;
-}
-
-/* Eliminated entrants */
-.pool-panel .eliminated-row td {
-  opacity: .48;
-  background: rgba(28,38,50,.90) !important;
-}
-
-.pool-panel .eliminated-row .move-down {
-  opacity: 1;
-  color: #ff5967 !important;
-  font-weight: 900;
-  font-size: .72rem;
-}
-
-/* Pool expand/collapse button */
-.pool-panel .footer-btn {
-  background: linear-gradient(
-    90deg,
-    #061426,
-    #0b223b
-  ) !important;
-  color: white !important;
-}
-
-/* =========================================================
-   FOOTER / EXPAND BUTTON
-   ========================================================= */
 
 .footer-btn {
   width: 100%;
@@ -402,7 +268,6 @@ tr:nth-child(even) td {
   overflow: hidden;
   color: white;
   padding: 26px;
-
   background:
     linear-gradient(
       100deg,
@@ -411,7 +276,6 @@ tr:nth-child(even) td {
       rgba(6,20,38,.42) 100%
     ),
     var(--hero-image);
-
   background-size: cover;
   background-position: center;
 }
@@ -421,12 +285,11 @@ tr:nth-child(even) td {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background:
-    radial-gradient(
-      circle at 9% 22%,
-      rgba(201,162,74,.32),
-      transparent 20%
-    );
+  background: radial-gradient(
+    circle at 9% 22%,
+    rgba(201,162,74,.32),
+    transparent 20%
+  );
 }
 
 .leader-box > * {
@@ -530,12 +393,7 @@ tr:nth-child(even) td {
   font-size: 0.72rem;
 }
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
 @media(max-width:1000px) {
-
   .page {
     padding: 18px;
   }
@@ -580,16 +438,73 @@ tr:nth-child(even) td {
     font-size: 12px;
     padding: 9px;
   }
+}
 
-  /* Keep pool table dark on mobile too */
-  .pool-panel,
-  .pool-panel table,
-  .pool-panel tbody td {
-    background-color: rgba(8,24,44,.94) !important;
-    color: #ffffff !important;
-  }
+/* =========================================================
+   POOL LEADERBOARD — KEEP THIS AS-IS
+   ========================================================= */
 
-  .pool-panel table tbody tr:nth-child(even) td {
-    background: rgba(48,71,97,.96) !important;
-  }
+.pool-panel table {
+  background: rgba(255,253,243,.48);
+}
+
+.pool-panel tbody tr td {
+  background: rgba(255,253,243,.68);
+  backdrop-filter: blur(2px);
+}
+
+.pool-panel tbody tr:nth-child(even) td {
+  background: rgba(245,238,216,.62);
+}
+
+.pool-panel .panel-title,
+.pool-panel .footer-btn {
+  background: var(--navy);
+  opacity: 1;
+}
+
+.pool-panel .eliminated-row td {
+  background: rgba(229,224,208,.58) !important;
+}
+
+.pool-panel .eliminated-row td:first-child {
+  background: rgba(210,200,170,.72) !important;
+}
+
+/* =========================================================
+   OPEN PROJECTED POOL LEADER
+   ========================================================= */
+
+.summary-panel {
+  background: rgba(6,20,38,.24) !important;
+}
+
+.summary-panel .leader-box {
+  padding: 26px;
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+}
+
+.summary-panel .reason,
+.summary-panel .leader-updated {
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,.65);
+}
+
+.summary-panel .stat-row div {
+  background: rgba(6,20,38,.55) !important;
+  border: 1px solid rgba(255,255,255,.20) !important;
+  color: #ffffff !important;
+}
+
+.summary-panel .stat-row strong {
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,.7);
+}
+
+.summary-panel .stat-row span {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,.7);
 }
