@@ -13,6 +13,7 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+
   background:
     linear-gradient(
       90deg,
@@ -21,9 +22,12 @@ body {
       rgba(4,15,32,.35) 100%
     ),
     url('https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&w=2400&q=80');
+
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  background-repeat: no-repeat;
+
   color: white;
   min-height: 100vh;
 }
@@ -150,22 +154,25 @@ body {
   align-items: start;
 }
 
+/* =========================================================
+   BASE PANEL
+   ========================================================= */
+
 .panel {
-  background: rgba(8,24,44,.98);
-  color: #ffffff;
+  background: rgba(255,255,255,.97);
+  color: #111827;
   box-shadow: 0 22px 46px rgba(0,0,0,.55);
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid rgba(201,162,74,.72);
 }
 
-.pool-panel {
-  margin-top: 24px;
-  background: rgba(255,253,243,.58);
-}
-
 .panel-title {
-  background: linear-gradient(90deg, #04101f, var(--navy-2));
+  background: linear-gradient(
+    90deg,
+    #04101f,
+    var(--navy-2)
+  );
   border-bottom: 2px solid var(--gold);
   padding: 15px 18px;
   font-size: 22px;
@@ -174,6 +181,10 @@ body {
   color: white;
   letter-spacing: .03em;
 }
+
+/* =========================================================
+   GOLF LEADERBOARD
+   ========================================================= */
 
 table {
   width: 100%;
@@ -221,11 +232,12 @@ tr:nth-child(even) td {
 }
 
 .highlight {
-  background: linear-gradient(
-    90deg,
-    rgba(16,102,58,.86),
-    rgba(10,72,43,.72)
-  ) !important;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(16,102,58,.86),
+      rgba(10,72,43,.72)
+    ) !important;
   border-left: 4px solid var(--gold);
 }
 
@@ -236,7 +248,11 @@ tr:nth-child(even) td {
 
 .footer-btn {
   width: 100%;
-  background: linear-gradient(90deg, #061426, #0b223b);
+  background: linear-gradient(
+    90deg,
+    #061426,
+    #0b223b
+  );
   color: white;
   padding: 15px 18px;
   font-size: 16px;
@@ -261,38 +277,45 @@ tr:nth-child(even) td {
 
 /* =========================================================
    PROJECTED POOL LEADER
+   =========================================================
+   IMPORTANT:
+   The hero image is ONLY the page background.
+   The Projected Pool does NOT paint the image again.
    ========================================================= */
 
-.leader-box {
+.summary-panel {
+  background: rgba(6,20,38,.24) !important;
+  color: white !important;
+}
+
+/* Do NOT add blur here */
+.summary-panel .leader-box {
   position: relative;
   overflow: hidden;
   color: white;
   padding: 26px;
-  background:
-    linear-gradient(
-      100deg,
-      rgba(6,20,38,.94) 0%,
-      rgba(6,20,38,.73) 45%,
-      rgba(6,20,38,.42) 100%
-    ),
-    var(--hero-image);
-  background-size: cover;
-  background-position: center;
+
+  background: transparent !important;
+  background-image: none !important;
+
+  border: none !important;
 }
 
-.leader-box::before {
+.summary-panel .leader-box::before {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(
-    circle at 9% 22%,
-    rgba(201,162,74,.32),
-    transparent 20%
-  );
+
+  background:
+    radial-gradient(
+      circle at 9% 22%,
+      rgba(201,162,74,.18),
+      transparent 20%
+    );
 }
 
-.leader-box > * {
+.summary-panel .leader-box > * {
   position: relative;
   z-index: 1;
 }
@@ -302,22 +325,24 @@ tr:nth-child(even) td {
   font-weight: 950;
   color: var(--gold-bright);
   line-height: 1;
-  text-shadow: 0 4px 16px rgba(0,0,0,.4);
+  text-shadow: 0 4px 16px rgba(0,0,0,.55);
 }
 
-.reason {
+.summary-panel .reason {
   margin-top: 12px;
   font-size: 19px;
   line-height: 1.45;
-  color: #f4f7fb;
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,.65);
 }
 
-.leader-updated {
+.summary-panel .leader-updated {
   margin-top: 18px;
   font-size: 15px;
-  color: var(--cream);
+  color: #ffffff !important;
   line-height: 1.45;
   font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0,0,0,.65);
 }
 
 .stat-row {
@@ -327,27 +352,32 @@ tr:nth-child(even) td {
   margin-top: 20px;
 }
 
-.stat-row div {
-  background: rgba(6,20,38,.88);
-  border: 1px solid rgba(201,162,74,.72);
+.summary-panel .stat-row div {
+  background: rgba(6,20,38,.55) !important;
+  border: 1px solid rgba(255,255,255,.20) !important;
   border-radius: 8px;
   padding: 12px;
+  color: #ffffff !important;
+  box-shadow: 0 8px 18px rgba(0,0,0,.15);
 }
 
-.stat-row strong {
+.summary-panel .stat-row strong {
   display: block;
-  color: var(--gold-bright);
+  color: #ffffff !important;
   font-size: 26px;
   line-height: 1;
+  text-shadow: 0 2px 8px rgba(0,0,0,.7);
 }
 
-.stat-row span {
+.summary-panel .stat-row span {
   display: block;
-  color: #d7e0ec;
+  color: #ffffff !important;
   font-size: 11px;
   text-transform: uppercase;
   font-weight: 900;
   margin-top: 6px;
+  opacity: 1 !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,.7);
 }
 
 .note {
@@ -362,6 +392,169 @@ tr:nth-child(even) td {
   text-align: center;
   letter-spacing: .03em;
 }
+
+/* =========================================================
+   LIVE POOL LEADERBOARD
+   =========================================================
+   THIS IS THE FIX FOR THE WHITE BOX.
+
+   It is deliberately separate from .summary-panel.
+
+   The main Augusta/Open hero image remains behind everything.
+   The pool panel is a translucent dark glass layer.
+   The entrant rows are translucent so the image remains visible.
+   ========================================================= */
+
+.pool-panel {
+  margin-top: 24px;
+
+  background: rgba(6,20,38,.24) !important;
+  color: #ffffff !important;
+
+  border: 1px solid rgba(201,162,74,.72);
+}
+
+/* Pool title remains solid/readable */
+.pool-panel .panel-title {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(4,16,31,.96),
+      rgba(11,34,59,.96)
+    ) !important;
+
+  color: #ffffff !important;
+  border-bottom: 2px solid var(--gold);
+}
+
+/* Pool table itself must NOT be white */
+.pool-panel table {
+  width: 100%;
+  border-collapse: collapse;
+
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+/* Pool table header */
+.pool-panel table thead th {
+  background: rgba(9,32,56,.94) !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid rgba(201,162,74,.65);
+}
+
+/* Normal entrant rows */
+.pool-panel table tbody tr td {
+  background: rgba(6,20,38,.48) !important;
+  color: #ffffff !important;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.12) !important;
+
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Alternating rows */
+.pool-panel table tbody tr:nth-child(even) td {
+  background: rgba(20,40,62,.58) !important;
+}
+
+/* Entrant/player names */
+.pool-panel .player {
+  color: #ffffff !important;
+  font-weight: 900;
+}
+
+/* Green pick */
+.pool-panel .green {
+  color: #95f0af !important;
+  font-weight: 900;
+}
+
+/* Red pick */
+.pool-panel .red {
+  color: #ff5b6b !important;
+  font-weight: 900;
+}
+
+/* Highlighted best pick */
+.pool-panel .highlight {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(16,102,58,.78),
+      rgba(10,72,43,.60)
+    ) !important;
+
+  border-left:
+    4px solid var(--gold) !important;
+}
+
+/* Small text */
+.pool-panel .small {
+  color: #edf3fa !important;
+}
+
+/* Movement arrows */
+.pool-panel .move-up {
+  color: #8ff0a6 !important;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.pool-panel .move-down {
+  color: #ff4656 !important;
+  font-weight: 900;
+  white-space: pre-line;
+}
+
+.pool-panel .move-same {
+  color: #cbd5e1 !important;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+/* Position column */
+.pool-panel tbody td:first-child {
+  background: rgba(6,20,38,.78) !important;
+  color: #ffffff !important;
+  font-weight: 900;
+}
+
+/* Eliminated rows */
+.pool-panel .eliminated-row td {
+  opacity: .55;
+  background: rgba(28,38,50,.72) !important;
+}
+
+.pool-panel .eliminated-row td:first-child {
+  background: rgba(28,38,50,.88) !important;
+  color: #ffffff !important;
+}
+
+.pool-panel .eliminated-row .move-down {
+  opacity: 1;
+  color: #ff5967 !important;
+  font-weight: 900;
+  font-size: .72rem;
+}
+
+/* Pool footer button */
+.pool-panel .footer-btn {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(6,20,38,.96),
+      rgba(11,34,59,.96)
+    ) !important;
+
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   MOVEMENT / ELIMINATION
+   ========================================================= */
 
 .move-up {
   color: #8ff0a6;
@@ -390,10 +583,15 @@ tr:nth-child(even) td {
   opacity: 1;
   color: #ff5967;
   font-weight: 900;
-  font-size: 0.72rem;
+  font-size: .72rem;
 }
 
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media(max-width:1000px) {
+
   .page {
     padding: 18px;
   }
@@ -438,73 +636,23 @@ tr:nth-child(even) td {
     font-size: 12px;
     padding: 9px;
   }
-}
 
-/* =========================================================
-   POOL LEADERBOARD — KEEP THIS AS-IS
-   ========================================================= */
+  /* Keep Projected Pool transparent */
+  .summary-panel {
+    background: rgba(6,20,38,.24) !important;
+  }
 
-.pool-panel table {
-  background: rgba(255,253,243,.48);
-}
+  /* Keep Live Pool transparent */
+  .pool-panel {
+    background: rgba(6,20,38,.24) !important;
+  }
 
-.pool-panel tbody tr td {
-  background: rgba(255,253,243,.68);
-  backdrop-filter: blur(2px);
-}
+  .pool-panel table tbody tr td {
+    background: rgba(6,20,38,.48) !important;
+    color: #ffffff !important;
+  }
 
-.pool-panel tbody tr:nth-child(even) td {
-  background: rgba(245,238,216,.62);
-}
-
-.pool-panel .panel-title,
-.pool-panel .footer-btn {
-  background: var(--navy);
-  opacity: 1;
-}
-
-.pool-panel .eliminated-row td {
-  background: rgba(229,224,208,.58) !important;
-}
-
-.pool-panel .eliminated-row td:first-child {
-  background: rgba(210,200,170,.72) !important;
-}
-
-/* =========================================================
-   OPEN PROJECTED POOL LEADER
-   ========================================================= */
-
-.summary-panel {
-  background: rgba(6,20,38,.24) !important;
-}
-
-.summary-panel .leader-box {
-  padding: 26px;
-  background: transparent !important;
-  background-image: none !important;
-  border: none !important;
-}
-
-.summary-panel .reason,
-.summary-panel .leader-updated {
-  color: #ffffff !important;
-  text-shadow: 0 2px 8px rgba(0,0,0,.65);
-}
-
-.summary-panel .stat-row div {
-  background: rgba(6,20,38,.55) !important;
-  border: 1px solid rgba(255,255,255,.20) !important;
-  color: #ffffff !important;
-}
-
-.summary-panel .stat-row strong {
-  color: #ffffff !important;
-  text-shadow: 0 2px 8px rgba(0,0,0,.7);
-}
-
-.summary-panel .stat-row span {
-  color: #ffffff !important;
-  opacity: 1 !important;
-  text-shadow: 0 2px 8px rgba(0,0,0,.7);
+  .pool-panel table tbody tr:nth-child(even) td {
+    background: rgba(20,40,62,.58) !important;
+  }
 }
